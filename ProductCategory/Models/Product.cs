@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProductCategory.Models
 {
@@ -13,7 +14,6 @@ namespace ProductCategory.Models
         [Required]
         public double Price { get; set; }
 
-        [Required]
         public string? Imageurl { get; set; }
         [Required]
         [Display(Name = "Cate Name")]
@@ -22,5 +22,13 @@ namespace ProductCategory.Models
 
         [Display(Name = "Cate Name")]
         public string? Cname { get; set; }
+        [NotMapped]
+        public int Quantity { get; set; }
+        [NotMapped]
+        public int CartId { get; set; }
+        [NotMapped]
+
+        
+        public DateTime dateTime { get; set; }
     }
 }

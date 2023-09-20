@@ -6,13 +6,39 @@
     <title>@ViewData["Title"] - ProductCategory</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/loginregister.css" asp-append-version="true" />
+
     <link rel="stylesheet" href="~/ProductCategory.styles.css" asp-append-version="true" />
+
+@*    ____My Links______*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Slick -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+   
+
+
 </head>
 <body>
+   
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+       
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ProductCategory</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="https://demo.htmlcodex.com/419/bootstrap-ecommerce-template/img/logo.png" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -22,15 +48,55 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Show Category</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">ProductsInfo</a>
-                        </li>
+                  
+                        @if (httpContextAccessor.HttpContext.Session.GetString("roleId") == "1")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Product List</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Category List</a>
+                            </li>
+
+                        }
                     </ul>
+
+                
+            <ul class="navbar-nav ">
+                @if (httpContextAccessor.HttpContext.Session.GetString("roleId") == "0")
+                {
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="ViewCart">Cart</a>
+                    </li>
+
+                }
+
+                @if (string.IsNullOrEmpty(httpContextAccessor.HttpContext.Session.GetString("userID")))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="RegisterUser">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Login">Login</a>
+                    </li>
+                    @*<li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Index">Cart</a>
+                    </li>*@
+                }
+                @if (!string.IsNullOrEmpty(httpContextAccessor.HttpContext.Session.GetString("userID")))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="">Welcome @httpContextAccessor.HttpContext.Session.GetString("email")</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Logout">LogOut</a>
+                    </li>
+                }
+            </ul>
                 </div>
             </div>
+
         </nav>
     </header>
     <div class="container">
@@ -39,14 +105,63 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - ProductCategory - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    <footer class=" text-center text-white" style="background-color: #f2eef5">
+            <div class="container p-4 pb-0">
+                <section class="mb-4">
+                    <a class="btn text-white btn-floating m-1"
+                   style="background-color: #AF98BE"
+                       href="#!"
+                       role="button">
+                    <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                    </a>
+
+                    <!-- Twitter -->
+                    <a class="btn text-white btn-floating m-1"
+                       style="background-color: #55acee;"
+                       href="#!"
+                       role="button">
+                    <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                    </a>
+
+                    <a class="btn text-white btn-floating m-1"
+                       style="background-color: #dd4b39;"
+                       href="#!"
+                       role="button">
+                    <i class="fa fa-google-plus-square" aria-hidden="true"></i>
+                    </a>
+
+                    <a class="btn text-white btn-floating m-1"
+                       style="background-color: #ac2bac;"
+                       href="#!"
+                       role="button">
+                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </a>
+
+                    <a class="btn text-white btn-floating m-1"
+                       style="background-color: #0082ca;"
+                       href="#!"
+                       role="button">
+                    <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+
+                    </a>
+                    <a class="btn text-white btn-floating m-1"
+                       style="background-color: #333333;"
+                       href="#!"
+                       role="button">
+                    <i class="fa fa-github-square" aria-hidden="true"></i>
+                    </a>
+                </section>
+            </div>
+        <div class="text-center p-3" style="background-color: #AF98BE;">
+                © 2023 Copyright:
+                <a class="text-white" href="https://mdbootstrap.com/">Eshop.com</a>
+            </div>
+        </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/home.js asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

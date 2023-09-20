@@ -6,6 +6,7 @@ builder.Services.AddSession(session => {
     session.IdleTimeout = TimeSpan.FromMinutes(20);
     session.Cookie.IsEssential = true;
 });
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
 

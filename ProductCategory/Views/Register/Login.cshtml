@@ -1,0 +1,78 @@
+﻿@model ProductCategory.UserData.Login
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+@*<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>*@
+
+
+
+
+<section class="gradient-custom loginform">
+    <div class="container py-5 mt-1">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">SignIn</h3>
+                        <form asp-action="Login">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="row">
+                                <div class="col-12">
+
+                                    <div class="form-outline">
+                                        <label asp-for="Email" class="control-label"></label>
+                                        <input asp-for="Email" class="form-control" />
+                                       @* <span asp-validation-for="Email" class="text-danger"></span>*@
+                                    </div>
+
+                                </div>
+                                <div class="col-12">
+
+                                    <div class="form-outline">
+                                        <label asp-for="Password" class="control-label"></label>
+                                        <input asp-for="Password" class="form-control" />
+                                       @* <span asp-validation-for="Password" class="text-danger"></span>*@
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-2">
+                                <input type="submit" value="Login" class="btn btn-primary btn-lg" />
+
+                            @*    //<input class="btn btn-primary btn-lg" type="submit" value="Submit" />*@
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   @* <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+</section>
+

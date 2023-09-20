@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ProductCategory.Models.Product>
+
+@{
+    ViewData["Title"] = "ViewCart";
+}
+
+<div class="container">
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+                <div class="col-md-3">
+                    <div class="card">
+                        <img src="@Url.Content(item.Imageurl)" height="150" width="200" />
+                        <div class="card-body">
+                            <h5 class="card-title">
+                            @Html.DisplayFor(modelItem => item.Name)
+                            </h5>
+                            <h5 class="card-title">
+                                Price:@Html.DisplayFor(modelItem => item.Price)
+                            </h5>
+                            <h5 class="card-title">
+                                Category Name:@Html.DisplayFor(modelItem => item.Cname)
+
+                            </h5>
+                                <a href="/Cart/RemoveCart/@item.CartId" class="btn btn-primary">Remove</a>
+                        <a href="/Order/Getrder/@item.Id" class="btn btn-primary">Order</a>
+
+                        </div>
+                    </div>
+
+                </div>
+        }
+    </div>
+</div>
